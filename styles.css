@@ -594,6 +594,26 @@ header p {
     position: relative;
 }
 
+.badge-image {
+    width: 150px;
+    height: 150px;
+    transition: all 0.5s ease;
+}
+
+.badge-locked .badge-image {
+    filter: grayscale(100%) opacity(0.3);
+}
+
+.badge-eligible .badge-image {
+    filter: none;
+    animation: badge-pulse 2s infinite;
+}
+
+.badge-unlocked .badge-image {
+    filter: none;
+    animation: badge-shine 3s infinite;
+}
+
 .badge-text {
     color: white;
     font-weight: 700;

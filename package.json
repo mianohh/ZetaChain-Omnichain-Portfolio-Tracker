@@ -18,7 +18,7 @@
     "setup": "npx hardhat run deploy-and-setup.js --network zetachainAthens",
     "demo": "node deploy-local.js",
     "test": "npx hardhat test test_revert_resilience.js --network zetachainAthens",
-    "serve": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000 --bind 0.0.0.0",
     "start": "npm run serve"
   },
   "keywords": [

@@ -538,7 +538,7 @@ class PortfolioTracker {
             const tx = await this.contract.transferBadgeCrossChain(badgeTokenId, destinationChain);
             await tx.wait();
             
-            const chainNames = { '1': 'Ethereum', '56': 'BSC', '137': 'Polygon' };
+            const chainNames = { '11155111': 'Ethereum Sepolia', '97': 'BSC Testnet', '80001': 'Polygon Mumbai' };
             this.showSuccess(`🚀 Badge transferred to ${chainNames[destinationChain]}! Universal NFT: Launch Everywhere achieved!`);
             this.addTransactionStatus(tx.hash, `Badge Transferred to ${chainNames[destinationChain]}`);
             
