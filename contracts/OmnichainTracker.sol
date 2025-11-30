@@ -257,9 +257,38 @@ contract OmnichainTracker is ERC721, Ownable {
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
         require(ownerOf(tokenId) != address(0), "Token does not exist");
         
-        return string(abi.encodePacked(
-            "data:application/json;base64,",
-            "eyJuYW1lIjoiWmV0YUNoYWluIFNhZmV0eSBCYWRnZSIsImRlc2NyaXB0aW9uIjoiQ2VydGlmaWVkIFNhZmV0eSBCdWZmZXIgVXNlciIsImltYWdlIjoiaHR0cHM6Ly9pcGZzLmlvL2lwZnMvUW1iYWRnZSJ9"
+        // For demo: Use GitHub raw URL or your server URL
+        // Replace with your actual badge.svg URL
+        string memory imageUrl = "https://raw.githubusercontent.com/mianohh/ZetaChain-Omnichain-Portfolio-Tracker/main/badge.svg";
+        
+        string memory json = string(abi.encodePacked(
+            '{"name":"ZetaChain Safety Badge #',
+            _toString(tokenId),
+            '","description":"Certified Safety Buffer User - Universal NFT","image":"',
+            imageUrl,
+            '","attributes":[{"trait_type":"Type","value":"Safety Certified"},{"trait_type":"Network","value":"Universal"}]}'
         ));
+        
+        return string(abi.encodePacked(
+            "data:application/json;utf8,",
+            json
+        ));
+    }
+    
+    function _toString(uint256 value) internal pure returns (string memory) {
+        if (value == 0) return "0";
+        uint256 temp = value;
+        uint256 digits;
+        while (temp != 0) {
+            digits++;
+            temp /= 10;
+        }
+        bytes memory buffer = new bytes(digits);
+        while (value != 0) {
+            digits -= 1;
+            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
+            value /= 10;
+        }
+        return string(buffer);
     }
 }
